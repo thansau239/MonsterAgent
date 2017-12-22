@@ -7,7 +7,8 @@
 + [64 bit 다운로드](https://monsterti.blob.core.windows.net/monster-agent/Monster(x64).zip)
 
 ## Install Monster Agent
-`몬스터 에이전트` 를 다운 받은 후 먼저 압축을 해제합니다. `Monster.exe /install` 명령어로 몬스터 에이전트를 설치합니다. 설치 과정은 다음 그림과 같습니다.
+`몬스터 에이전트` 를 다운 받은 후 먼저 압축을 해제합니다. `Monster.exe /install` 명령어로 몬스터 에이전트를 설치합니다. 
+
 ![install](/images/monster-install.png)
 
 ## Monster Agent Start

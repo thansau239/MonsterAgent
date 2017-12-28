@@ -2,6 +2,8 @@
 
 `몬스터 에이전트` 는 Threat Hunting에 필요한 이벤트(프로세스, 네트워크, 파일, 레지스트리 등)의 상세 정보를 수집 하고 다양한 외부 시스템과 쉽게 연동 할 수 있습니다. 수집된 이벤트는 시스템에 유입된 악성코드 행위 추적, 호스트 시스템의 비정상적인 네트워크 활동 탐지 등에 활용 할 수 있습니다.
 
+`Monster Agent` 에 관한 질문이나 피드백은 [Threat Hunters](https://groups.google.com/forum/?hl=ko#!forum/threat-hunters) 그룹이나 [Github Issue](https://github.com/somma-inc/MonsterAgent/issues)를 통해 언제든 남기실 수 있습니다. 
+
 # Quick Start
 
 ## Donwload Monster Agent

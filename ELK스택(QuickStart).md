@@ -1,7 +1,7 @@
 # ELK Stack Quick Start
 이 튜토리얼에서는 ELK(Elasticsearch, Logstash, Kibana 이하, ELK) 스택을 가상환경에 구축하는 내용을 살펴봅니다. 가상환경의 세부 설정 항목은 다음과 같습니다.
 ```bash
-os : ubuntu 16.04.03 server (x64)
+os : ubuntu 16.04.03 desktop (x64)
 ram : 4G
 * (Elasticsearch itself needs 2GB to start)
 disk : 30G
@@ -61,9 +61,9 @@ elastic 6.x 버전을 다운 받기 위해 패키지 소스 목록에 추가합�
 
 만약 elasticsearch 를 다운로드 중 `hash sum mismatch`가 발생 했을 시에 아래 명령어를 실행 해보시길 바랍니다.
 
-> ~$ sudo apt clean  
-> ~$ sudo rm -rf /var/lib/apt/lists/*  
-> ~$ sudo apt-get update && sudo apt-get install elasticsearch  
+> ~$ sudo apt clean
+> ~$ sudo rm -rf /var/lib/apt/lists/*
+> ~$ sudo apt-get update && sudo apt-get install elasticsearch
 
 설치 이후 elasticsearch(이하, 엘라스틱서치) 구동을 위해 기본적인 환경설정을 해줍니다. 엘라스틱서치 설정 파일은 `/etc/elasticsearch/` 폴더 밑에 있으며 해당 폴더에는 다음과 같은 파일이 생성 되어져 있습니다.
 + elasticsearch.yml
@@ -77,7 +77,6 @@ elastic 6.x 버전을 다운 받기 위해 패키지 소스 목록에 추가합�
 -rw-rw----  1 root elasticsearch 2854 Oct  7 05:34 elasticsearch.yml
 -rw-rw----  1 root elasticsearch 3064 Oct  7 05:34 jvm.options
 -rw-rw----  1 root elasticsearch 4456 Oct  7 05:34 log4j2.properties
-drwxr-x---  2 root elasticsearch 4096 Oct  7 05:34 scripts
 ```
 튜토리얼에서는 네트워크 설정 이외의 작업은 필요 없습니다. 만약 엘라스틱을 클러스터로 구성을 해야 하는 경우 다음 블로그를 참고 하여 환경을 구성 할 수 있습니다.
 ```bash
@@ -106,7 +105,7 @@ http.port: 9200
 ```
 설정 변경 후 다음과 같은 명령어를 통해 엘라스틱서치 데몬을 등록하여 운영체제가 부팅 될때 마다 자동으로 서비스가 시작되도록 설정을 합니다.
 
-> ~$ sudo /bin/systemctl daemon-reload  
+> ~$ sudo /bin/systemctl daemon-reload
 > ~$ sudo /bin/systemctl enable elasticsearch.service
 
 `curl`을 이용하여 엘라스틱서치 설치 후 정상 실행 유무를 확인 해 볼 수 있습니다. curl 이 설치가 안되어 있는 경우 curl을 설치 후 진행합니다.
@@ -152,10 +151,10 @@ server.host: "localhost"
 ```
 설정 변경 후 다음과 같은 명령어를 통해 키바나 데몬을 등록 하여 운영체제가 부팅 될때 마다 자동으로 서비스가 시작되도록 설정을 합니다.
 
-> ~$ sudo /bin/systemctl daemon-reload  
+> ~$ sudo /bin/systemctl daemon-reload
 > ~$ sudo /bin/systemctl enable kibana.service
 
-다음 단계에서 kibana 접근시 웹 인증을 nginx를 `reverse-proxy`로 연동 합니다. 키바나 인증 설정은 `x-pack` 을 사용 중인 경우 `x-pack` 에서 지원 하는 인증을 사용하면 됩니다. 
+다음 단계에서 kibana 접근시 웹 인증을 nginx를 `reverse-proxy`로 연동 합니다. 키바나 인증 설정은 `x-pack` 을 사용 중인 경우 `x-pack` 에서 지원 하는 인증을 사용하면 됩니다.
 ___
 ### 키바나 인증 설정
 키바나 인증을 위해서 nginx에서 제공 하는 `HTTP basic authentication`을 사용 합니다. nginx는 다음과 같이 설치 할 수 있습니다.
@@ -163,7 +162,7 @@ ___
 > ~$ sudo apt-get -y install nginx
 
 kibana 웹 인터페이스에 로그온에 이용하는 아이디와 비밀번호를 설정합니다. 이 예제에서는 아이디가 `kibadmin` 이며, 사용자가 임의로 설정할 수 있습니다.
-> ~$ sudo -v  
+> ~$ sudo -v
 > ~$ sudo echo "kibadmin:`openssl passwd -apr1`" | sudo tee -a /etc/nginx/htpasswd.users
 > Password:
 
@@ -216,7 +215,7 @@ server {
 server_name의 `192.168.0.13`은 nginx가 설치된 IP입니다.
 
 설정 파일이 올바른지 확인 하는 방법은 다음과 같으며 이후 nginx를 재시작 하여 정상 동작 하는지를 확인합니다.
-> ~$ sudo nginx -t  
+> ~$ sudo nginx -t
 > ~$ sudo systemctl restart nginx
 
 ---
@@ -236,8 +235,8 @@ drwxrwxr-x   2 root root  4096 Dec 17 13:51 conf.d
 ```
 
 설정 변경 후 다음과 같은 명령어를 통해 서비스가 시작되도록 설정을 합니다.
-> ~$ sudo systemctl start logstash.service  
-> ~$ sudo systemctl enable logstash.service  
+> ~$ sudo systemctl start logstash.service
+> ~$ sudo systemctl enable logstash.service
 
 로그스태시가 설치 후 정상 동작 유무를 확인하기 위해서 `/usr/share/logstash/bin`에 있는 logstash 를 간단한 파이프라인를 입력하여 실행해봅니다.
 ```bash
@@ -247,18 +246,18 @@ The stdin plugin is now waiting for input:
 test
 2017-12-21T09:36:18.967Z ubuntu test
 ```
-실행 후 정삭적인 결과를 확인 할 수 있다면 ELK 스택 구성은 완료가 된 것입니다. 설치 이후 엘라스틱 서치 활용 문서는 `tech.somma.kr`에서 블로그 제목 `Monster Agent: ELK Integratio`에서 확인 할 수 있습니다.
+실행 후 정삭적인 결과를 확인 할 수 있다면 ELK 스택 구성은 완료가 된 것입니다. 설치 이후 엘라스틱 서치 활용 문서는 `tech.somma.kr`에서 블로그 제목 `Monster Agent: ELK Integration`에서 확인 할 수 있습니다.
 
 ---
 
 ### 포스트맨 설치
-엘라스틱서치 매핑 템플릿 생성은 kibana에 있는 dev tool로도 가능하지만, `Monster Agent: ELK Integratio`에서는 포스트맨으로 진행하기 때문에 설치를 권장 드립니다.  
+엘라스틱서치 매핑 템플릿 생성은 kibana에 있는 dev tool로도 가능하지만, `Monster Agent: ELK Integration`에서는 포스트맨으로 진행하기 때문에 설치를 권장 드립니다.
 
-> ~$ wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz  
+> ~$ wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
 
 포스트맨을 다운 받습니다.
 
-> ~$ sudo tar -xzf postman.tar.gz -C /opt  
+> ~$ sudo tar -xzf postman.tar.gz -C /opt
 
 `/opt` 에 압축 해제합니다.
 
@@ -280,7 +279,7 @@ drwxr-xr-x  4 logstash logstash 4096 Dec  8 21:49 Postman
 
 포스트맨을 터미널에서 실행하기 위해 심볼릭 링크를 생성합니다.
 
-> ~$ postman  
+> ~$ postman
 
 심볼릭 링크한 뒤에는 터미널 창에서 실행할 수 있습니다. 로그인은 구글 계정으로 쉽게 할 수 있습니다. 정상적으로 작동 확인 법은 `GET 메소드를 이용하여 localhost:9200 으로 전송`하면, 엘라스틱서치 정상 실행 결과를 보실 수 있습니다.
 ```bash
@@ -300,3 +299,4 @@ drwxr-xr-x  4 logstash logstash 4096 Dec  8 21:49 Postman
   "tagline" : "You Know, for Search"
 }
 ```
+

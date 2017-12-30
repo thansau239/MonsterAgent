@@ -111,6 +111,8 @@ http.port: 9200
 
 > ~$ sudo /bin/systemctl enable elasticsearch.service
 
+> ~$ sudo service elasticsearch start
+
 `curl`을 이용하여 엘라스틱서치 설치 후 정상 실행 유무를 확인 해 볼 수 있습니다. curl 이 설치가 안되어 있는 경우 curl을 설치 후 진행합니다.
 
 > ~$ sudo apt install curl
@@ -200,7 +202,7 @@ ens33     Link encap:Ethernet  HWaddr 00:0c:29:a6:96:d6
 nginx가 설치된 IP를 확인하여 /etc/nginx/sites-available/default 설정 파일을 아래와 같이 수정합니다.
 
 ```bash
-~$ sudo vim /etc/nginx/sites-available/default
+~$ sudo vi /etc/nginx/sites-available/default
 server {
     listen 80;
 

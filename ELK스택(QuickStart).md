@@ -62,7 +62,9 @@ elastic 6.x 버전을 다운 받기 위해 패키지 소스 목록에 추가합�
 만약 elasticsearch 를 다운로드 중 `hash sum mismatch`가 발생 했을 시에 아래 명령어를 실행 해보시길 바랍니다.
 
 > ~$ sudo apt clean
+
 > ~$ sudo rm -rf /var/lib/apt/lists/*
+
 > ~$ sudo apt-get update && sudo apt-get install elasticsearch
 
 설치 이후 elasticsearch(이하, 엘라스틱서치) 구동을 위해 기본적인 환경설정을 해줍니다. 엘라스틱서치 설정 파일은 `/etc/elasticsearch/` 폴더 밑에 있으며 해당 폴더에는 다음과 같은 파일이 생성 되어져 있습니다.
@@ -106,6 +108,7 @@ http.port: 9200
 설정 변경 후 다음과 같은 명령어를 통해 엘라스틱서치 데몬을 등록하여 운영체제가 부팅 될때 마다 자동으로 서비스가 시작되도록 설정을 합니다.
 
 > ~$ sudo /bin/systemctl daemon-reload
+
 > ~$ sudo /bin/systemctl enable elasticsearch.service
 
 `curl`을 이용하여 엘라스틱서치 설치 후 정상 실행 유무를 확인 해 볼 수 있습니다. curl 이 설치가 안되어 있는 경우 curl을 설치 후 진행합니다.
@@ -152,6 +155,7 @@ server.host: "localhost"
 설정 변경 후 다음과 같은 명령어를 통해 키바나 데몬을 등록 하여 운영체제가 부팅 될때 마다 자동으로 서비스가 시작되도록 설정을 합니다.
 
 > ~$ sudo /bin/systemctl daemon-reload
+
 > ~$ sudo /bin/systemctl enable kibana.service
 
 다음 단계에서 kibana 접근시 웹 인증을 nginx를 `reverse-proxy`로 연동 합니다. 키바나 인증 설정은 `x-pack` 을 사용 중인 경우 `x-pack` 에서 지원 하는 인증을 사용하면 됩니다.
@@ -162,8 +166,11 @@ ___
 > ~$ sudo apt-get -y install nginx
 
 kibana 웹 인터페이스에 로그온에 이용하는 아이디와 비밀번호를 설정합니다. 이 예제에서는 아이디가 `kibadmin` 이며, 사용자가 임의로 설정할 수 있습니다.
+
 > ~$ sudo -v
-> ~$ sudo echo "kibadmin:`openssl passwd -apr1`" | sudo tee -a /etc/nginx/htpasswd.users
+
+> ~$ sudo echo "kibadmin:\`openssl passwd -apr1\`" | sudo tee -a /etc/nginx/htpasswd.users
+
 > Password:
 
 키바나와의 연동을 위해서 nginx의 "reverse proxy"를 사용할 것이며, `/etc/nginx/sites-available/` 경로에 있는 기존의 설정 파일은 백업 해둔 뒤 새로운 설정 파일을 다음과 같이 작성합니다.
@@ -216,6 +223,7 @@ server_name의 `192.168.0.13`은 nginx가 설치된 IP입니다.
 
 설정 파일이 올바른지 확인 하는 방법은 다음과 같으며 이후 nginx를 재시작 하여 정상 동작 하는지를 확인합니다.
 > ~$ sudo nginx -t
+
 > ~$ sudo systemctl restart nginx
 
 ---
@@ -236,6 +244,7 @@ drwxrwxr-x   2 root root  4096 Dec 17 13:51 conf.d
 
 설정 변경 후 다음과 같은 명령어를 통해 서비스가 시작되도록 설정을 합니다.
 > ~$ sudo systemctl start logstash.service
+
 > ~$ sudo systemctl enable logstash.service
 
 로그스태시가 설치 후 정상 동작 유무를 확인하기 위해서 `/usr/share/logstash/bin`에 있는 logstash 를 간단한 파이프라인를 입력하여 실행해봅니다.

@@ -41,6 +41,9 @@
 
 ![delete](/images/monster-delete.png)
 
+## Monster Agent 설정 변경
+`몬스터 에이전트` 설정 파일을 `Monster(QuickStart).conf` 또는 `Monster(Datil).conf` 로 변경할 경우 `/stop` 옵션을 사용하여 종료한 뒤 이름을 `Monster.conf`로 변경하여 `몬스터 에이전트` 기존 설정 파일에 덮어 씌워줍니다.
+
 ---
 
 # 기타

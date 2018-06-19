@@ -1,708 +1,0 @@
-Step 1/1 : FROM docker.elastic.co/elasticsearch/elasticsearch:6.3.0
-6.3.0: Pulling from elasticsearch/elasticsearch
-Step 1/1 : FROM docker.elastic.co/elasticsearch/elasticsearch:6.3.0
-6.3.0: Pulling from elasticsearch/elasticsearch
-Digest: sha256:3169b4009903c47245d3bf81d8a7b11ab22ce2965598823384e5c4bbd4298316
-Digest: sha256:3169b4009903c47245d3bf81d8a7b11ab22ce2965598823384e5c4bbd4298316
-Status: Image is up to date for docker.elastic.co/elasticsearch/elasticsearch:6.3.0
-Status: Downloaded newer image for docker.elastic.co/elasticsearch/elasticsearch:6.3.0
- ---> 56d3dc08212d
- ---> 56d3dc08212d
-Successfully built 56d3dc08212d
-Successfully built 56d3dc08212d
-Successfully tagged workagent_mstr-elasticsearch:latest
-Successfully tagged workagent_mstr-elasticsearch:latest
-Step 1/7 : FROM docker.elastic.co/kibana/kibana:6.3.0
-Step 1/7 : FROM docker.elastic.co/kibana/kibana:6.3.0
-6.3.0: Pulling from kibana/kibana
-6.3.0: Pulling from kibana/kibana
-Digest: sha256:fd18353e0f980d812e31d52c5c706b614b33dde7728f2be1bb9fc18a531ea364
-Digest: sha256:fd18353e0f980d812e31d52c5c706b614b33dde7728f2be1bb9fc18a531ea364
-Status: Image is up to date for docker.elastic.co/kibana/kibana:6.3.0
- ---> 878491bdc281
-Step 2/7 : RUN mv /usr/share/kibana/config/kibana.yml /usr/share/kibana/config/kibana_backup
-Status: Downloaded newer image for docker.elastic.co/kibana/kibana:6.3.0
- ---> 878491bdc281
-Step 2/7 : RUN mv /usr/share/kibana/config/kibana.yml /usr/share/kibana/config/kibana_backup
- ---> Running in 54571f8d37e6
- ---> Running in ef688ac1741b
-Removing intermediate container ef688ac1741b
- ---> 5f8ec2c9b677
-Step 3/7 : ADD dashboards /usr/share/kibana/dashboards
-Removing intermediate container 54571f8d37e6
- ---> b57daf2c81f3
-Step 3/7 : ADD dashboards /usr/share/kibana/dashboards
- ---> e8a95c83dd02
-Step 4/7 : ADD scripts/kibana-entrypoint.sh /usr/share/kibana/kibana-entrypoint.sh
- ---> 958f7e2fee9f
-Step 4/7 : ADD scripts/kibana-entrypoint.sh /usr/share/kibana/kibana-entrypoint.sh
- ---> 708b72a831c3
-Step 5/7 : ADD scripts/kibana-setup.sh /usr/share/kibana/kibana-setup.sh
- ---> 07596fe77783
-Step 5/7 : ADD scripts/kibana-setup.sh /usr/share/kibana/kibana-setup.sh
- ---> 801a84ae8368
-Step 6/7 : WORKDIR "/usr/share/kibana/"
- ---> 341cd8d91f1a
-Step 6/7 : WORKDIR "/usr/share/kibana/"
-Removing intermediate container cda8116a9622
- ---> d843255db914
-Step 7/7 : ENTRYPOINT ["sh", "./kibana-entrypoint.sh"]
-Removing intermediate container 63169ed7f944
- ---> 65ccf84dbf4a
-Step 7/7 : ENTRYPOINT ["sh", "./kibana-entrypoint.sh"]
- ---> Running in 22167c0d9b0f
- ---> Running in e0f11d516118
-Removing intermediate container 22167c0d9b0f
- ---> d9f036734963
-Successfully built d9f036734963
-Successfully tagged workagent_mstr-kibana:latest
-Removing intermediate container e0f11d516118
- ---> 130af0265473
-Successfully built 130af0265473
-Successfully tagged workagent_mstr-kibana:latest
-Step 1/1 : FROM docker.elastic.co/logstash/logstash:6.3.0
-Step 1/1 : FROM docker.elastic.co/logstash/logstash:6.3.0
-6.3.0: Pulling from logstash/logstash
-6.3.0: Pulling from logstash/logstash
-Building mstr-elasticsearch
-Step 1/1 : FROM docker.elastic.co/elasticsearch/elasticsearch:6.3.0
- ---> 56d3dc08212d
-Successfully built 56d3dc08212d
-Successfully tagged workagent_mstr-elasticsearch:latest
-Building mstr-kibana
-Step 1/7 : FROM docker.elastic.co/kibana/kibana:6.3.0
- ---> 878491bdc281
-Step 2/7 : RUN mv /usr/share/kibana/config/kibana.yml /usr/share/kibana/config/kibana_backup
- ---> Using cache
- ---> b57daf2c81f3
-Step 3/7 : ADD dashboards /usr/share/kibana/dashboards
- ---> Using cache
- ---> e8a95c83dd02
-Step 4/7 : ADD scripts/kibana-entrypoint.sh /usr/share/kibana/kibana-entrypoint.sh
- ---> Using cache
- ---> 07596fe77783
-Step 5/7 : ADD scripts/kibana-setup.sh /usr/share/kibana/kibana-setup.sh
- ---> Using cache
- ---> 341cd8d91f1a
-Step 6/7 : WORKDIR "/usr/share/kibana/"
- ---> Using cache
- ---> d843255db914
-Step 7/7 : ENTRYPOINT ["sh", "./kibana-entrypoint.sh"]
- ---> Using cache
- ---> d9f036734963
-Successfully built d9f036734963
-Successfully tagged workagent_mstr-kibana:latest
-Building mstr-logstash
-Step 1/1 : FROM docker.elastic.co/logstash/logstash:6.3.0
-6.3.0: Pulling from logstash/logstash
-Digest: sha256:3f80943ab3bc4ca9ef50eb712cdd720a1e61edeecae5f15388724039e432435a
-Status: Downloaded newer image for docker.elastic.co/logstash/logstash:6.3.0
- ---> b2d2be1fbe5c
-Successfully built b2d2be1fbe5c
-Successfully tagged workagent_mstr-logstash:latest
-Building mstr-nginx
-Step 1/12 : FROM cyb3rward0g/helk-base:0.0.1
-0.0.1: Pulling from cyb3rward0g/helk-base
-Digest: sha256:c8e1d828db0c2b243afb4d797263e5076aa1fbc8a8c8751838f4044f1169a45f
-Status: Downloaded newer image for cyb3rward0g/helk-base:0.0.1
- ---> 5afc29a0bc60
-Step 2/12 : ENV DEBIAN_FRONTEND noninteractive
- ---> Running in 4092ce232c00
-Removing intermediate container 4092ce232c00
- ---> 272b651b7f79
-Step 3/12 : RUN echo "[MONSTER-DOCKER-INSTALLATION-INFO] Updating Ubuntu base image.."     && apt-get update -qq
- ---> Running in 007fb31bbf46
-[MONSTER-DOCKER-INSTALLATION-INFO] Updating Ubuntu base image..
-Removing intermediate container 007fb31bbf46
- ---> 6934385c7d15
-Step 4/12 : RUN apt-get -qy clean     autoremove
- ---> Running in 28f4cbe85bf6
-Removing intermediate container 28f4cbe85bf6
- ---> d17d2ba09adb
-Step 5/12 : ADD scripts/nginx-entrypoint.sh /opt/helk/scripts/
- ---> 3ca1e41d3c0e
-Step 6/12 : RUN chmod +x /opt/helk/scripts/nginx-entrypoint.sh
- ---> Running in eaaf7949235b
-Removing intermediate container eaaf7949235b
- ---> 83b7e5718561
-Step 7/12 : RUN apt-get install -qqy nginx     && mv /etc/nginx/sites-available/default /etc/nginx/sites-available/backup_default
- ---> Running in 96e80d031368
-Preconfiguring packages ...
-Selecting previously unselected package libxau6:amd64.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 8878 files and directories currently installed.)
-Preparing to unpack .../libxau6_1%3a1.0.8-1_amd64.deb ...
-Unpacking libxau6:amd64 (1:1.0.8-1) ...
-Selecting previously unselected package sgml-base.
-Preparing to unpack .../sgml-base_1.26+nmu4ubuntu1_all.deb ...
-Unpacking sgml-base (1.26+nmu4ubuntu1) ...
-Selecting previously unselected package libjpeg-turbo8:amd64.
-Preparing to unpack .../libjpeg-turbo8_1.4.2-0ubuntu3_amd64.deb ...
-Unpacking libjpeg-turbo8:amd64 (1.4.2-0ubuntu3) ...
-Selecting previously unselected package libjbig0:amd64.
-Preparing to unpack .../libjbig0_2.1-3.1_amd64.deb ...
-Unpacking libjbig0:amd64 (2.1-3.1) ...
-Selecting previously unselected package libpng12-0:amd64.
-Preparing to unpack .../libpng12-0_1.2.54-1ubuntu1_amd64.deb ...
-Unpacking libpng12-0:amd64 (1.2.54-1ubuntu1) ...
-Selecting previously unselected package ucf.
-Preparing to unpack .../archives/ucf_3.0036_all.deb ...
-Moving old data out of the way
-Unpacking ucf (3.0036) ...
-Selecting previously unselected package geoip-database.
-Preparing to unpack .../geoip-database_20160408-1_all.deb ...
-Unpacking geoip-database (20160408-1) ...
-Selecting previously unselected package libgeoip1:amd64.
-Preparing to unpack .../libgeoip1_1.6.9-1_amd64.deb ...
-Unpacking libgeoip1:amd64 (1.6.9-1) ...
-Selecting previously unselected package libicu55:amd64.
-Preparing to unpack .../libicu55_55.1-7ubuntu0.4_amd64.deb ...
-Unpacking libicu55:amd64 (55.1-7ubuntu0.4) ...
-Selecting previously unselected package libxdmcp6:amd64.
-Preparing to unpack .../libxdmcp6_1%3a1.1.2-1.1_amd64.deb ...
-Unpacking libxdmcp6:amd64 (1:1.1.2-1.1) ...
-Selecting previously unselected package libxcb1:amd64.
-Preparing to unpack .../libxcb1_1.11.1-1ubuntu1_amd64.deb ...
-Unpacking libxcb1:amd64 (1.11.1-1ubuntu1) ...
-Selecting previously unselected package libx11-data.
-Preparing to unpack .../libx11-data_2%3a1.6.3-1ubuntu2_all.deb ...
-Unpacking libx11-data (2:1.6.3-1ubuntu2) ...
-Selecting previously unselected package libx11-6:amd64.
-Preparing to unpack .../libx11-6_2%3a1.6.3-1ubuntu2_amd64.deb ...
-Unpacking libx11-6:amd64 (2:1.6.3-1ubuntu2) ...
-Selecting previously unselected package libxml2:amd64.
-Preparing to unpack .../libxml2_2.9.3+dfsg1-1ubuntu0.5_amd64.deb ...
-Unpacking libxml2:amd64 (2.9.3+dfsg1-1ubuntu0.5) ...
-Selecting previously unselected package xml-core.
-Preparing to unpack .../xml-core_0.13+nmu2_all.deb ...
-Unpacking xml-core (0.13+nmu2) ...
-Selecting previously unselected package fonts-dejavu-core.
-Preparing to unpack .../fonts-dejavu-core_2.35-1_all.deb ...
-Unpacking fonts-dejavu-core (2.35-1) ...
-Selecting previously unselected package fontconfig-config.
-Preparing to unpack .../fontconfig-config_2.11.94-0ubuntu1.1_all.deb ...
-Unpacking fontconfig-config (2.11.94-0ubuntu1.1) ...
-Selecting previously unselected package libfreetype6:amd64.
-Preparing to unpack .../libfreetype6_2.6.1-0.1ubuntu2.3_amd64.deb ...
-Unpacking libfreetype6:amd64 (2.6.1-0.1ubuntu2.3) ...
-Selecting previously unselected package libfontconfig1:amd64.
-Preparing to unpack .../libfontconfig1_2.11.94-0ubuntu1.1_amd64.deb ...
-Unpacking libfontconfig1:amd64 (2.11.94-0ubuntu1.1) ...
-Selecting previously unselected package libjpeg8:amd64.
-Preparing to unpack .../libjpeg8_8c-2ubuntu8_amd64.deb ...
-Unpacking libjpeg8:amd64 (8c-2ubuntu8) ...
-Selecting previously unselected package libtiff5:amd64.
-Preparing to unpack .../libtiff5_4.0.6-1ubuntu0.4_amd64.deb ...
-Unpacking libtiff5:amd64 (4.0.6-1ubuntu0.4) ...
-Selecting previously unselected package libvpx3:amd64.
-Preparing to unpack .../libvpx3_1.5.0-2ubuntu1_amd64.deb ...
-Unpacking libvpx3:amd64 (1.5.0-2ubuntu1) ...
-Selecting previously unselected package libxpm4:amd64.
-Preparing to unpack .../libxpm4_1%3a3.5.11-1ubuntu0.16.04.1_amd64.deb ...
-Unpacking libxpm4:amd64 (1:3.5.11-1ubuntu0.16.04.1) ...
-Selecting previously unselected package libgd3:amd64.
-Preparing to unpack .../libgd3_2.1.1-4ubuntu0.16.04.8_amd64.deb ...
-Unpacking libgd3:amd64 (2.1.1-4ubuntu0.16.04.8) ...
-Selecting previously unselected package libxslt1.1:amd64.
-Preparing to unpack .../libxslt1.1_1.1.28-2.1ubuntu0.1_amd64.deb ...
-Unpacking libxslt1.1:amd64 (1.1.28-2.1ubuntu0.1) ...
-Selecting previously unselected package nginx-common.
-Preparing to unpack .../nginx-common_1.10.3-0ubuntu0.16.04.2_all.deb ...
-Unpacking nginx-common (1.10.3-0ubuntu0.16.04.2) ...
-Selecting previously unselected package nginx-core.
-Preparing to unpack .../nginx-core_1.10.3-0ubuntu0.16.04.2_amd64.deb ...
-Unpacking nginx-core (1.10.3-0ubuntu0.16.04.2) ...
-Selecting previously unselected package nginx.
-Preparing to unpack .../nginx_1.10.3-0ubuntu0.16.04.2_all.deb ...
-Unpacking nginx (1.10.3-0ubuntu0.16.04.2) ...
-Processing triggers for libc-bin (2.23-0ubuntu10) ...
-Processing triggers for systemd (229-4ubuntu21.2) ...
-Setting up libxau6:amd64 (1:1.0.8-1) ...
-Setting up sgml-base (1.26+nmu4ubuntu1) ...
-Setting up libjpeg-turbo8:amd64 (1.4.2-0ubuntu3) ...
-Setting up libjbig0:amd64 (2.1-3.1) ...
-Setting up libpng12-0:amd64 (1.2.54-1ubuntu1) ...
-Setting up ucf (3.0036) ...
-Setting up geoip-database (20160408-1) ...
-Setting up libgeoip1:amd64 (1.6.9-1) ...
-Setting up libicu55:amd64 (55.1-7ubuntu0.4) ...
-Setting up libxdmcp6:amd64 (1:1.1.2-1.1) ...
-Setting up libxcb1:amd64 (1.11.1-1ubuntu1) ...
-Setting up libx11-data (2:1.6.3-1ubuntu2) ...
-Setting up libx11-6:amd64 (2:1.6.3-1ubuntu2) ...
-Setting up libxml2:amd64 (2.9.3+dfsg1-1ubuntu0.5) ...
-Setting up xml-core (0.13+nmu2) ...
-Setting up fonts-dejavu-core (2.35-1) ...
-Setting up fontconfig-config (2.11.94-0ubuntu1.1) ...
-Setting up libfreetype6:amd64 (2.6.1-0.1ubuntu2.3) ...
-Setting up libfontconfig1:amd64 (2.11.94-0ubuntu1.1) ...
-Setting up libjpeg8:amd64 (8c-2ubuntu8) ...
-Setting up libtiff5:amd64 (4.0.6-1ubuntu0.4) ...
-Setting up libvpx3:amd64 (1.5.0-2ubuntu1) ...
-Setting up libxpm4:amd64 (1:3.5.11-1ubuntu0.16.04.1) ...
-Setting up libgd3:amd64 (2.1.1-4ubuntu0.16.04.8) ...
-Setting up libxslt1.1:amd64 (1.1.28-2.1ubuntu0.1) ...
-Setting up nginx-common (1.10.3-0ubuntu0.16.04.2) ...
-Setting up nginx-core (1.10.3-0ubuntu0.16.04.2) ...
-invoke-rc.d: could not determine current runlevel
-invoke-rc.d: policy-rc.d denied execution of start.
-Setting up nginx (1.10.3-0ubuntu0.16.04.2) ...
-Processing triggers for libc-bin (2.23-0ubuntu10) ...
-Processing triggers for sgml-base (1.26+nmu4ubuntu1) ...
-Processing triggers for systemd (229-4ubuntu21.2) ...
-Removing intermediate container 96e80d031368
- ---> 9c5d2fa692e6
-Step 8/12 : ADD default /etc/nginx/sites-available/
- ---> 6959e04686c3
-Step 9/12 : RUN apt-get update -qq
- ---> Running in deeb75b9a95f
-Removing intermediate container deeb75b9a95f
- ---> 1ca11cc5d5d1
-Step 10/12 : EXPOSE 80
- ---> Running in 09d14e2a4b76
-Removing intermediate container 09d14e2a4b76
- ---> b87ec66eb65f
-Step 11/12 : WORKDIR "/opt/helk/scripts/"
-Removing intermediate container f14be91e47e7
- ---> c3a2d2c4a3ce
-Step 12/12 : ENTRYPOINT ["./nginx-entrypoint.sh"]
- ---> Running in 9cf96f8b745a
-Removing intermediate container 9cf96f8b745a
- ---> 584273e2f873
-Successfully built 584273e2f873
-Successfully tagged workagent_mstr-nginx:latest
-Creating mstr-elasticsearch ... 
-[4A[2KCreating mstr-elasticsearch ... [31merror[0m[4B
-ERROR: for mstr-elasticsearch  Cannot start service mstr-elasticsearch: driver failed programming external connectivity on endpoint mstr-elasticsearch (20ddf7982121f02028a1215254ef417a88c4ea53b27e9cb8d27f9e5163f00ec8): Error starting userland proxy: listen tcp 0.0.0.0:9300: bind: address already in use
-
-ERROR: for mstr-elasticsearch  Cannot start service mstr-elasticsearch: driver failed programming external connectivity on endpoint mstr-elasticsearch (20ddf7982121f02028a1215254ef417a88c4ea53b27e9cb8d27f9e5163f00ec8): Error starting userland proxy: listen tcp 0.0.0.0:9300: bind: address already in use
-Encountered errors while bringing up the project.
-Building mstr-elasticsearch
-Step 1/1 : FROM docker.elastic.co/elasticsearch/elasticsearch:6.3.0
- ---> 56d3dc08212d
-Successfully built 56d3dc08212d
-Successfully tagged workagent_mstr-elasticsearch:latest
-Building mstr-kibana
-Step 1/7 : FROM docker.elastic.co/kibana/kibana:6.3.0
- ---> 878491bdc281
-Step 2/7 : RUN mv /usr/share/kibana/config/kibana.yml /usr/share/kibana/config/kibana_backup
- ---> Using cache
- ---> b57daf2c81f3
-Step 3/7 : ADD dashboards /usr/share/kibana/dashboards
- ---> Using cache
- ---> e8a95c83dd02
-Step 4/7 : ADD scripts/kibana-entrypoint.sh /usr/share/kibana/kibana-entrypoint.sh
- ---> Using cache
- ---> 07596fe77783
-Step 5/7 : ADD scripts/kibana-setup.sh /usr/share/kibana/kibana-setup.sh
- ---> Using cache
- ---> 341cd8d91f1a
-Step 6/7 : WORKDIR "/usr/share/kibana/"
- ---> Using cache
- ---> d843255db914
-Step 7/7 : ENTRYPOINT ["sh", "./kibana-entrypoint.sh"]
- ---> Using cache
- ---> d9f036734963
-Successfully built d9f036734963
-Successfully tagged workagent_mstr-kibana:latest
-Building mstr-logstash
-Step 1/1 : FROM docker.elastic.co/logstash/logstash:6.3.0
- ---> b2d2be1fbe5c
-Successfully built b2d2be1fbe5c
-Successfully tagged workagent_mstr-logstash:latest
-Building mstr-nginx
-Step 1/12 : FROM cyb3rward0g/helk-base:0.0.1
- ---> 5afc29a0bc60
-Step 2/12 : ENV DEBIAN_FRONTEND noninteractive
- ---> Using cache
- ---> 272b651b7f79
-Step 3/12 : RUN echo "[MONSTER-DOCKER-INSTALLATION-INFO] Updating Ubuntu base image.."     && apt-get update -qq
- ---> Using cache
- ---> 6934385c7d15
-Step 4/12 : RUN apt-get -qy clean     autoremove
- ---> Using cache
- ---> d17d2ba09adb
-Step 5/12 : ADD scripts/nginx-entrypoint.sh /opt/helk/scripts/
- ---> Using cache
- ---> 3ca1e41d3c0e
-Step 6/12 : RUN chmod +x /opt/helk/scripts/nginx-entrypoint.sh
- ---> Using cache
- ---> 83b7e5718561
-Step 7/12 : RUN apt-get install -qqy nginx     && mv /etc/nginx/sites-available/default /etc/nginx/sites-available/backup_default
- ---> Using cache
- ---> 9c5d2fa692e6
-Step 8/12 : ADD default /etc/nginx/sites-available/
- ---> Using cache
- ---> 6959e04686c3
-Step 9/12 : RUN apt-get update -qq
- ---> Using cache
- ---> 1ca11cc5d5d1
-Step 10/12 : EXPOSE 80
- ---> Using cache
- ---> b87ec66eb65f
-Step 11/12 : WORKDIR "/opt/helk/scripts/"
- ---> Using cache
- ---> c3a2d2c4a3ce
-Step 12/12 : ENTRYPOINT ["./nginx-entrypoint.sh"]
- ---> Using cache
- ---> 584273e2f873
-Successfully built 584273e2f873
-Successfully tagged workagent_mstr-nginx:latest
-Starting mstr-elasticsearch ... 
-[1A[2KStarting mstr-elasticsearch ... [31merror[0m[1B
-ERROR: for mstr-elasticsearch  Cannot start service mstr-elasticsearch: driver failed programming external connectivity on endpoint mstr-elasticsearch (f16e59282678423362f350c279d79d46d51fddac701942dc18f3a1715fe31025): Error starting userland proxy: listen tcp 0.0.0.0:9300: bind: address already in use
-
-ERROR: for mstr-elasticsearch  Cannot start service mstr-elasticsearch: driver failed programming external connectivity on endpoint mstr-elasticsearch (f16e59282678423362f350c279d79d46d51fddac701942dc18f3a1715fe31025): Error starting userland proxy: listen tcp 0.0.0.0:9300: bind: address already in use
-Encountered errors while bringing up the project.
-Building mstr-elasticsearch
-Step 1/1 : FROM docker.elastic.co/elasticsearch/elasticsearch:6.3.0
- ---> 56d3dc08212d
-Successfully built 56d3dc08212d
-Successfully tagged workagent_mstr-elasticsearch:latest
-Building mstr-kibana
-Step 1/7 : FROM docker.elastic.co/kibana/kibana:6.3.0
- ---> 878491bdc281
-Step 2/7 : RUN mv /usr/share/kibana/config/kibana.yml /usr/share/kibana/config/kibana_backup
- ---> Using cache
- ---> b57daf2c81f3
-Step 3/7 : ADD dashboards /usr/share/kibana/dashboards
- ---> Using cache
- ---> e8a95c83dd02
-Step 4/7 : ADD scripts/kibana-entrypoint.sh /usr/share/kibana/kibana-entrypoint.sh
- ---> Using cache
- ---> 07596fe77783
-Step 5/7 : ADD scripts/kibana-setup.sh /usr/share/kibana/kibana-setup.sh
- ---> Using cache
- ---> 341cd8d91f1a
-Step 6/7 : WORKDIR "/usr/share/kibana/"
- ---> Using cache
- ---> d843255db914
-Step 7/7 : ENTRYPOINT ["sh", "./kibana-entrypoint.sh"]
- ---> Using cache
- ---> d9f036734963
-Successfully built d9f036734963
-Successfully tagged workagent_mstr-kibana:latest
-Building mstr-logstash
-Step 1/1 : FROM docker.elastic.co/logstash/logstash:6.3.0
- ---> b2d2be1fbe5c
-Successfully built b2d2be1fbe5c
-Successfully tagged workagent_mstr-logstash:latest
-Building mstr-nginx
-Step 1/12 : FROM cyb3rward0g/helk-base:0.0.1
- ---> 5afc29a0bc60
-Step 2/12 : ENV DEBIAN_FRONTEND noninteractive
- ---> Using cache
- ---> 272b651b7f79
-Step 3/12 : RUN echo "[MONSTER-DOCKER-INSTALLATION-INFO] Updating Ubuntu base image.."     && apt-get update -qq
- ---> Using cache
- ---> 6934385c7d15
-Step 4/12 : RUN apt-get -qy clean     autoremove
- ---> Using cache
- ---> d17d2ba09adb
-Step 5/12 : ADD scripts/nginx-entrypoint.sh /opt/helk/scripts/
- ---> Using cache
- ---> 3ca1e41d3c0e
-Step 6/12 : RUN chmod +x /opt/helk/scripts/nginx-entrypoint.sh
- ---> Using cache
- ---> 83b7e5718561
-Step 7/12 : RUN apt-get install -qqy nginx     && mv /etc/nginx/sites-available/default /etc/nginx/sites-available/backup_default
- ---> Using cache
- ---> 9c5d2fa692e6
-Step 8/12 : ADD default /etc/nginx/sites-available/
- ---> Using cache
- ---> 6959e04686c3
-Step 9/12 : RUN apt-get update -qq
- ---> Using cache
- ---> 1ca11cc5d5d1
-Step 10/12 : EXPOSE 80
- ---> Using cache
- ---> b87ec66eb65f
-Step 11/12 : WORKDIR "/opt/helk/scripts/"
- ---> Using cache
- ---> c3a2d2c4a3ce
-Step 12/12 : ENTRYPOINT ["./nginx-entrypoint.sh"]
- ---> Using cache
- ---> 584273e2f873
-Successfully built 584273e2f873
-Successfully tagged workagent_mstr-nginx:latest
-Starting mstr-elasticsearch ... 
-[1A[2KStarting mstr-elasticsearch ... [32mdone[0m[1BCreating mstr-kibana ... 
-Creating mstr-logstash ... 
-[4A[2KCreating mstr-kibana ... [32mdone[0m[4BCreating mstr-nginx ... 
-[4A[2KCreating mstr-logstash ... [32mdone[0m[4B[4A[2KCreating mstr-nginx ... [32mdone[0m[4BStopping mstr-nginx         ... 
-Stopping mstr-kibana        ... 
-Stopping mstr-logstash      ... 
-Stopping mstr-elasticsearch ... 
-[2A[2KStopping mstr-logstash      ... [32mdone[0m[2B[4A[2KStopping mstr-nginx         ... [32mdone[0m[4B[3A[2KStopping mstr-kibana        ... [32mdone[0m[3B[1A[2KStopping mstr-elasticsearch ... [32mdone[0m[1BRemoving mstr-nginx         ... 
-Removing mstr-kibana        ... 
-Removing mstr-logstash      ... 
-Removing mstr-elasticsearch ... 
-[4A[2KRemoving mstr-nginx         ... [32mdone[0m[4B[2A[2KRemoving mstr-logstash      ... [32mdone[0m[2B[1A[2KRemoving mstr-elasticsearch ... [32mdone[0m[1B[3A[2KRemoving mstr-kibana        ... [32mdone[0m[3BRemoving network workagent_helk
-Creating network "workagent_helk" with driver "bridge"
-Creating mstr-elasticsearch ... 
-[4A[2KCreating mstr-elasticsearch ... [32mdone[0m[4BCreating mstr-logstash ... 
-Creating mstr-kibana ... 
-[4A[2KCreating mstr-kibana ... [32mdone[0m[4BCreating mstr-nginx ... 
-[4A[2KCreating mstr-logstash ... [32mdone[0m[4B[4A[2KCreating mstr-nginx ... [32mdone[0m[4BStopping mstr-nginx         ... 
-Stopping mstr-kibana        ... 
-Stopping mstr-logstash      ... 
-Stopping mstr-elasticsearch ... 
-[2A[2KStopping mstr-logstash      ... [32mdone[0m[2B[4A[2KStopping mstr-nginx         ... [32mdone[0m[4B[3A[2KStopping mstr-kibana        ... [32mdone[0m[3B[1A[2KStopping mstr-elasticsearch ... [32mdone[0m[1BRemoving mstr-nginx         ... 
-Removing mstr-kibana        ... 
-Removing mstr-logstash      ... 
-Removing mstr-elasticsearch ... 
-[2A[2KRemoving mstr-logstash      ... [32mdone[0m[2B[4A[2KRemoving mstr-nginx         ... [32mdone[0m[4B[3A[2KRemoving mstr-kibana        ... [32mdone[0m[3B[1A[2KRemoving mstr-elasticsearch ... [32mdone[0m[1BRemoving network workagent_helk
-Creating network "workagent_helk" with driver "bridge"
-Building mstr-elasticsearch
-Step 1/1 : FROM docker.elastic.co/elasticsearch/elasticsearch:6.3.0
- ---> 56d3dc08212d
-Successfully built 56d3dc08212d
-Successfully tagged workagent_mstr-elasticsearch:latest
-Building mstr-kibana
-Step 1/7 : FROM docker.elastic.co/kibana/kibana:6.3.0
- ---> 878491bdc281
-Step 2/7 : RUN mv /usr/share/kibana/config/kibana.yml /usr/share/kibana/config/kibana_backup
- ---> Using cache
- ---> b57daf2c81f3
-Step 3/7 : ADD dashboards /usr/share/kibana/dashboards
- ---> Using cache
- ---> e8a95c83dd02
-Step 4/7 : ADD scripts/kibana-entrypoint.sh /usr/share/kibana/kibana-entrypoint.sh
- ---> Using cache
- ---> 07596fe77783
-Step 5/7 : ADD scripts/kibana-setup.sh /usr/share/kibana/kibana-setup.sh
- ---> Using cache
- ---> 341cd8d91f1a
-Step 6/7 : WORKDIR "/usr/share/kibana/"
- ---> Using cache
- ---> d843255db914
-Step 7/7 : ENTRYPOINT ["sh", "./kibana-entrypoint.sh"]
- ---> Using cache
- ---> d9f036734963
-Successfully built d9f036734963
-Successfully tagged workagent_mstr-kibana:latest
-Building mstr-logstash
-Step 1/1 : FROM docker.elastic.co/logstash/logstash:6.3.0
- ---> b2d2be1fbe5c
-Successfully built b2d2be1fbe5c
-Successfully tagged workagent_mstr-logstash:latest
-Building mstr-nginx
-Step 1/12 : FROM cyb3rward0g/helk-base:0.0.1
- ---> 5afc29a0bc60
-Step 2/12 : ENV DEBIAN_FRONTEND noninteractive
- ---> Using cache
- ---> 272b651b7f79
-Step 3/12 : RUN echo "[MONSTER-DOCKER-INSTALLATION-INFO] Updating Ubuntu base image.."     && apt-get update -qq
- ---> Using cache
- ---> 6934385c7d15
-Step 4/12 : RUN apt-get -qy clean     autoremove
- ---> Using cache
- ---> d17d2ba09adb
-Step 5/12 : ADD scripts/nginx-entrypoint.sh /opt/helk/scripts/
- ---> Using cache
- ---> 3ca1e41d3c0e
-Step 6/12 : RUN chmod +x /opt/helk/scripts/nginx-entrypoint.sh
- ---> Using cache
- ---> 83b7e5718561
-Step 7/12 : RUN apt-get install -qqy nginx     && mv /etc/nginx/sites-available/default /etc/nginx/sites-available/backup_default
- ---> Using cache
- ---> 9c5d2fa692e6
-Step 8/12 : ADD default /etc/nginx/sites-available/
- ---> Using cache
- ---> 6959e04686c3
-Step 9/12 : RUN apt-get update -qq
- ---> Using cache
- ---> 1ca11cc5d5d1
-Step 10/12 : EXPOSE 80
- ---> Using cache
- ---> b87ec66eb65f
-Step 11/12 : WORKDIR "/opt/helk/scripts/"
- ---> Using cache
- ---> c3a2d2c4a3ce
-Step 12/12 : ENTRYPOINT ["./nginx-entrypoint.sh"]
- ---> Using cache
- ---> 584273e2f873
-Successfully built 584273e2f873
-Successfully tagged workagent_mstr-nginx:latest
-Creating mstr-elasticsearch ... 
-[4A[2KCreating mstr-elasticsearch ... [32mdone[0m[4BCreating mstr-logstash ... 
-Creating mstr-kibana ... 
-[4A[2KCreating mstr-kibana ... [32mdone[0m[4BCreating mstr-nginx ... 
-[4A[2KCreating mstr-logstash ... [32mdone[0m[4B[4A[2KCreating mstr-nginx ... [32mdone[0m[4BStopping mstr-nginx         ... 
-Stopping mstr-logstash      ... 
-Stopping mstr-kibana        ... 
-Stopping mstr-elasticsearch ... 
-[3A[2KStopping mstr-logstash      ... [32mdone[0m[3B[4A[2KStopping mstr-nginx         ... [32mdone[0m[4B[2A[2KStopping mstr-kibana        ... [32mdone[0m[2B[1A[2KStopping mstr-elasticsearch ... [32mdone[0m[1BRemoving mstr-nginx         ... 
-Removing mstr-logstash      ... 
-Removing mstr-kibana        ... 
-Removing mstr-elasticsearch ... 
-[1A[2KRemoving mstr-elasticsearch ... [32mdone[0m[1B[2A[2KRemoving mstr-kibana        ... [32mdone[0m[2B[3A[2KRemoving mstr-logstash      ... [32mdone[0m[3B[4A[2KRemoving mstr-nginx         ... [32mdone[0m[4BRemoving network workagent_helk
-Creating network "workagent_helk" with driver "bridge"
-Building mstr-elasticsearch
-Step 1/1 : FROM docker.elastic.co/elasticsearch/elasticsearch:6.3.0
- ---> 56d3dc08212d
-Successfully built 56d3dc08212d
-Successfully tagged workagent_mstr-elasticsearch:latest
-Building mstr-kibana
-Step 1/7 : FROM docker.elastic.co/kibana/kibana:6.3.0
- ---> 878491bdc281
-Step 2/7 : RUN mv /usr/share/kibana/config/kibana.yml /usr/share/kibana/config/kibana_backup
- ---> Using cache
- ---> b57daf2c81f3
-Step 3/7 : ADD dashboards /usr/share/kibana/dashboards
- ---> Using cache
- ---> e8a95c83dd02
-Step 4/7 : ADD scripts/kibana-entrypoint.sh /usr/share/kibana/kibana-entrypoint.sh
- ---> Using cache
- ---> 07596fe77783
-Step 5/7 : ADD scripts/kibana-setup.sh /usr/share/kibana/kibana-setup.sh
- ---> Using cache
- ---> 341cd8d91f1a
-Step 6/7 : WORKDIR "/usr/share/kibana/"
- ---> Using cache
- ---> d843255db914
-Step 7/7 : ENTRYPOINT ["sh", "./kibana-entrypoint.sh"]
- ---> Using cache
- ---> d9f036734963
-Successfully built d9f036734963
-Successfully tagged workagent_mstr-kibana:latest
-Building mstr-logstash
-Step 1/1 : FROM docker.elastic.co/logstash/logstash:6.3.0
- ---> b2d2be1fbe5c
-Successfully built b2d2be1fbe5c
-Successfully tagged workagent_mstr-logstash:latest
-Building mstr-nginx
-Step 1/12 : FROM cyb3rward0g/helk-base:0.0.1
- ---> 5afc29a0bc60
-Step 2/12 : ENV DEBIAN_FRONTEND noninteractive
- ---> Using cache
- ---> 272b651b7f79
-Step 3/12 : RUN echo "[MONSTER-DOCKER-INSTALLATION-INFO] Updating Ubuntu base image.."     && apt-get update -qq
- ---> Using cache
- ---> 6934385c7d15
-Step 4/12 : RUN apt-get -qy clean     autoremove
- ---> Using cache
- ---> d17d2ba09adb
-Step 5/12 : ADD scripts/nginx-entrypoint.sh /opt/helk/scripts/
- ---> Using cache
- ---> 3ca1e41d3c0e
-Step 6/12 : RUN chmod +x /opt/helk/scripts/nginx-entrypoint.sh
- ---> Using cache
- ---> 83b7e5718561
-Step 7/12 : RUN apt-get install -qqy nginx     && mv /etc/nginx/sites-available/default /etc/nginx/sites-available/backup_default
- ---> Using cache
- ---> 9c5d2fa692e6
-Step 8/12 : ADD default /etc/nginx/sites-available/
- ---> Using cache
- ---> 6959e04686c3
-Step 9/12 : RUN apt-get update -qq
- ---> Using cache
- ---> 1ca11cc5d5d1
-Step 10/12 : EXPOSE 80
- ---> Using cache
- ---> b87ec66eb65f
-Step 11/12 : WORKDIR "/opt/helk/scripts/"
- ---> Using cache
- ---> c3a2d2c4a3ce
-Step 12/12 : ENTRYPOINT ["./nginx-entrypoint.sh"]
- ---> Using cache
- ---> 584273e2f873
-Successfully built 584273e2f873
-Successfully tagged workagent_mstr-nginx:latest
-Creating mstr-elasticsearch ... 
-[4A[2KCreating mstr-elasticsearch ... [32mdone[0m[4BCreating mstr-kibana ... 
-Creating mstr-logstash ... 
-[4A[2KCreating mstr-kibana ... [32mdone[0m[4BCreating mstr-nginx ... 
-[4A[2KCreating mstr-logstash ... [32mdone[0m[4B[4A[2KCreating mstr-nginx ... [32mdone[0m[4BStopping mstr-nginx         ... 
-Stopping mstr-logstash      ... 
-Stopping mstr-kibana        ... 
-Stopping mstr-elasticsearch ... 
-[3A[2KStopping mstr-logstash      ... [32mdone[0m[3B[4A[2KStopping mstr-nginx         ... [32mdone[0m[4B[2A[2KStopping mstr-kibana        ... [32mdone[0m[2B[1A[2KStopping mstr-elasticsearch ... [32mdone[0m[1BRemoving mstr-nginx         ... 
-Removing mstr-logstash      ... 
-Removing mstr-kibana        ... 
-Removing mstr-elasticsearch ... 
-[4A[2KRemoving mstr-nginx         ... [32mdone[0m[4B[3A[2KRemoving mstr-logstash      ... [32mdone[0m[3B[2A[2KRemoving mstr-kibana        ... [32mdone[0m[2B[1A[2KRemoving mstr-elasticsearch ... [32mdone[0m[1BRemoving network workagent_helk
-Creating network "workagent_helk" with driver "bridge"
-Building mstr-elasticsearch
-Step 1/1 : FROM docker.elastic.co/elasticsearch/elasticsearch:6.3.0
- ---> 56d3dc08212d
-Successfully built 56d3dc08212d
-Successfully tagged workagent_mstr-elasticsearch:latest
-Building mstr-kibana
-Step 1/7 : FROM docker.elastic.co/kibana/kibana:6.3.0
- ---> 878491bdc281
-Step 2/7 : RUN mv /usr/share/kibana/config/kibana.yml /usr/share/kibana/config/kibana_backup
- ---> Using cache
- ---> b57daf2c81f3
-Step 3/7 : ADD dashboards /usr/share/kibana/dashboards
- ---> Using cache
- ---> e8a95c83dd02
-Step 4/7 : ADD scripts/kibana-entrypoint.sh /usr/share/kibana/kibana-entrypoint.sh
- ---> Using cache
- ---> 07596fe77783
-Step 5/7 : ADD scripts/kibana-setup.sh /usr/share/kibana/kibana-setup.sh
- ---> Using cache
- ---> 341cd8d91f1a
-Step 6/7 : WORKDIR "/usr/share/kibana/"
- ---> Using cache
- ---> d843255db914
-Step 7/7 : ENTRYPOINT ["sh", "./kibana-entrypoint.sh"]
- ---> Using cache
- ---> d9f036734963
-Successfully built d9f036734963
-Successfully tagged workagent_mstr-kibana:latest
-Building mstr-logstash
-Step 1/1 : FROM docker.elastic.co/logstash/logstash:6.3.0
- ---> b2d2be1fbe5c
-Successfully built b2d2be1fbe5c
-Successfully tagged workagent_mstr-logstash:latest
-Building mstr-nginx
-Step 1/12 : FROM cyb3rward0g/helk-base:0.0.1
- ---> 5afc29a0bc60
-Step 2/12 : ENV DEBIAN_FRONTEND noninteractive
- ---> Using cache
- ---> 272b651b7f79
-Step 3/12 : RUN echo "[MONSTER-DOCKER-INSTALLATION-INFO] Updating Ubuntu base image.."     && apt-get update -qq
- ---> Using cache
- ---> 6934385c7d15
-Step 4/12 : RUN apt-get -qy clean     autoremove
- ---> Using cache
- ---> d17d2ba09adb
-Step 5/12 : ADD scripts/nginx-entrypoint.sh /opt/helk/scripts/
- ---> Using cache
- ---> 3ca1e41d3c0e
-Step 6/12 : RUN chmod +x /opt/helk/scripts/nginx-entrypoint.sh
- ---> Using cache
- ---> 83b7e5718561
-Step 7/12 : RUN apt-get install -qqy nginx     && mv /etc/nginx/sites-available/default /etc/nginx/sites-available/backup_default
- ---> Using cache
- ---> 9c5d2fa692e6
-Step 8/12 : ADD default /etc/nginx/sites-available/
- ---> Using cache
- ---> 6959e04686c3
-Step 9/12 : RUN apt-get update -qq
- ---> Using cache
- ---> 1ca11cc5d5d1
-Step 10/12 : EXPOSE 80
- ---> Using cache
- ---> b87ec66eb65f
-Step 11/12 : WORKDIR "/opt/helk/scripts/"
- ---> Using cache
- ---> c3a2d2c4a3ce
-Step 12/12 : ENTRYPOINT ["./nginx-entrypoint.sh"]
- ---> Using cache
- ---> 584273e2f873
-Successfully built 584273e2f873
-Successfully tagged workagent_mstr-nginx:latest
-Creating mstr-elasticsearch ... 
-[4A[2KCreating mstr-elasticsearch ... [32mdone[0m[4BCreating mstr-logstash ... 
-Creating mstr-kibana ... 
-[4A[2KCreating mstr-kibana ... [32mdone[0m[4BCreating mstr-nginx ... 
-[4A[2KCreating mstr-logstash ... [32mdone[0m[4B[4A[2KCreating mstr-nginx ... [32mdone[0m[4BStopping mstr-nginx         ... 
-Stopping mstr-kibana        ... 
-Stopping mstr-logstash      ... 
-Stopping mstr-elasticsearch ... 
-[2A[2KStopping mstr-logstash      ... [32mdone[0m[2B[4A[2KStopping mstr-nginx         ... [32mdone[0m[4B[3A[2KStopping mstr-kibana        ... [32mdone[0m[3B[1A[2KStopping mstr-elasticsearch ... [32mdone[0m[1BRemoving mstr-nginx         ... 
-Removing mstr-kibana        ... 
-Removing mstr-logstash      ... 
-Removing mstr-elasticsearch ... 
-[2A[2KRemoving mstr-logstash      ... [32mdone[0m[2B[3A[2KRemoving mstr-kibana        ... [32mdone[0m[3B[4A[2KRemoving mstr-nginx         ... [32mdone[0m[4B[1A[2KRemoving mstr-elasticsearch ... [32mdone[0m[1BRemoving network workagent_helk

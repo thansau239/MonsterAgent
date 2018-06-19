@@ -1,31 +1,48 @@
 {
+    "index_patterns": "logs-endpoint-monster-*",
+    "settings": {
+        "index.refresh_interval": "5s"
+    },
     "mappings": {
-        "_default_": {
-            "_all": {
-                "norms": false
-            },
+        "doc": {
             "dynamic_templates": [{
-                "template1": {
+                "strings": {
+                    "match_mapping_type": "string",
                     "mapping": {
-                        "doc_values": true,
-                        "ignore_above": 1024,
-                        "index": true,
-                        "type": "keyword"
-                    },
-                    "match_mapping_type": "string"
+                        "type": "text",
+                        "norms": false,
+                        "fields": {
+                            "raw": {
+                                "type": "keyword",
+                                "ignore_above": 256
+                            }
+                        }
+                    }
                 }
             }],
             "properties": {
                 "@timestamp": {
                     "type": "date"
                 },
+                "@CollectTime": {
+                    "type": "date"
+                },
+                "@ImageCreateTime": {
+                    "type": "date"
+                },
+                "@ImageModifiedTime": {
+                    "type": "date"
+                },
+                "@DisConnectTime": {
+                    "type": "date"
+                },
                 "EventBlockKey": {
                     "type": "long"
                 },
-                "EvnetID": {
+                "EventID": {
                     "type": "long"
                 },
-                "CollectTimestamp(UTC)": {
+                "EventTimestamp(UTC)": {
                     "type": "long"
                 },
                 "ProcessId": {
@@ -37,16 +54,16 @@
                 "TerminalSessionId": {
                     "type": "long"
                 },
-                "DestinationIp": {
+                "ClientIP": {
                     "type": "ip"
                 },
-                "SourceIP": {
-                    "type": "ip"
-                },
-                "DestinationPort": {
+                "ClientPort": {
                     "type": "long"
                 },
-                "SourcePort": {
+                "SeverIP": {
+                    "type": "ip"
+                },
+                "ServerPort": {
                     "type": "long"
                 },
                 "WriteCounts": {
@@ -67,25 +84,23 @@
                 "RecvBytes": {
                     "type": "long"
                 },
-                "DestinationGeoip": {
-                    "dynamic": false,
+                "geoip": {
                     "properties": {
-                        "ip": {
-                            "type": "ip"
+                        "dma_code": {
+                            "type": "integer"
+                        },
+                        "latitude": {
+                            "type": "float"
                         },
                         "location": {
                             "type": "geo_point"
                         },
-                        "latitude": {
-                            "type": "half_float"
-                        },
                         "longitude": {
-                            "type": "half_float"
+                            "type": "float"
                         }
                     }
                 },
                 "Group": {
-                    "dynamic": false,
                     "properties": {
                         "name": {
                             "type": "keyword"
@@ -99,7 +114,6 @@
                     }
                 },
                 "Privilege": {
-                    "dynamic": false,
                     "properties": {
                         "name": {
                             "type": "keyword"
@@ -114,9 +128,5 @@
                 }
             }
         }
-    },
-    "settings": {
-        "index.refresh_interval": "5s"
-    },
-    "template": "monster-*"
+    }
 }

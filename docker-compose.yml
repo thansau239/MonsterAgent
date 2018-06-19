@@ -1,0 +1,65 @@
+version: '2'
+
+services:
+  mstr-elasticsearch:
+    build:
+      context: monster-elasticsearch/
+    container_name: mstr-elasticsearch
+    volumes:
+      - ./monster-elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx1G -Xms1G"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    restart: always
+    networks:
+      - helk
+  mstr-logstash:
+    build:
+      context: monster-logstash/
+    container_name: mstr-logstash
+    volumes:
+      - ./monster-logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./monster-logstash/pipeline:/usr/share/logstash/pipeline:ro
+      - ./monster-logstash/output_templates:/usr/share/logstash/output_templates:ro
+    ports:
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+    environment:
+      LS_JAVA_OPTS: "-Xmx1G -Xms1G"
+    networks:
+      - helk
+    depends_on: ['mstr-elasticsearch']
+  mstr-kibana:
+    build:
+      context: monster-kibana/
+    container_name: mstr-kibana
+    volumes:
+      - ./monster-kibana/config/:/usr/share/kibana/config:ro
+    restart: always
+    networks:
+      - helk
+    depends_on: ['mstr-elasticsearch']
+  mstr-nginx:
+    build:
+      context: monster-nginx/
+    container_name: mstr-nginx
+    ports:
+      - "80:80"
+    restart: always
+    networks:
+      - helk
+    depends_on: ['mstr-kibana']
+networks:
+  helk:
+    driver: bridge
+volumes:
+  #Es data
+  esdata:
+    driver: local

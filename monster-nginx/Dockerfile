@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # *********** Installing Prerequisites ***************
 # -qq : No output except for errors
-RUN echo "[MONSTER-DOCKER-INSTALLATION-INFO] Updating Ubuntu base image.." \
+RUN echo "[INFO] Updating Ubuntu base image.." \
     && apt-get update -qq
 
 RUN apt-get -qy clean \

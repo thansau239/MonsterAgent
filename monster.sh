@@ -230,8 +230,8 @@ function install_monster_elk_and_start() {
 function monster_elk_manual_install() {
   get_host_ip
   install_pre_requirements
-  install_monster_elk_and_start
   echo "[INFO] Starting the monster-ELK. Please wait."
+  install_monster_elk_and_start
   sleep 90
   show_final_information
 }
@@ -249,8 +249,7 @@ function monster_elk_up {
 }
 
 function monster_elk_down {
-   echo "[INFO] Stop Monster ELK via docker-compose"
-
+  echo "[INFO] Stop Monster ELK via docker-compose"
   # Building Monster ELK 
   docker-compose down >> $LOGFILE 2>&1
   ERROR=$?
@@ -258,6 +257,23 @@ function monster_elk_down {
       echoerror "Could not stop Monster ELK via docker-compose (Error Code: $ERROR)."
       exit 1
   fi
+}
+
+function monster_elk_start() {
+  get_host_ip
+  echo "[INFO] Starting the monster-ELK. Please wait."
+  monster_elk_up
+  sleep 90
+  show_final_information
+}
+
+function monster_elk_restart() {
+  get_host_ip
+  monster_elk_down
+  echo "[INFO] Starting the monster-ELK. Please wait."
+  monster_elk_up
+  sleep 90
+  show_final_information 
 }
 
 show_final_information(){
@@ -283,13 +299,11 @@ MODE="$1"
 if [ "${MODE}" == "install" ]; then
   monster_elk_manual_install
 elif [ "${MODE}" == "up" ]; then
-  monster_elk_up
-  show_final_information
+  monster_elk_start
 elif [ "${MODE}" == "down" ]; then
   monster_elk_down
 elif [ "${MODE}" == "restart" ]; then
-  monster_elk_down
-  monster_elk_up
+  monster_elk_restart
 else
   print_help
   exit 1

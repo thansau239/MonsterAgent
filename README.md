@@ -23,8 +23,8 @@
 
 컴퓨터 환경(32bit, 64bit)에 맞는 에이전트를 다운 받습니다.
 
-+ [32 bit 다운로드](https://github.com/somma-inc/MonsterAgent/blob/release/1.0.0.2/release/v1.0.0.2/monster_v1.0.0.2_x86.zip)
-+ [64 bit 다운로드](https://github.com/somma-inc/MonsterAgent/blob/release/1.0.0.2/release/v1.0.0.2/monster_v1.0.0.2_x64.zip)
++ [32 bit 다운로드](https://github.com/somma-inc/MonsterAgent/blob/release/1.0.0.2/monster-agent/v1.0.2.2/monster_v1.0.2.2_x86.zip)
++ [64 bit 다운로드](https://github.com/somma-inc/MonsterAgent/blob/release/1.0.0.2/monster-agent/v1.0.2.2/monster_v1.0.2.2_x64.zip)
 
 
 다운로드 한 압축파일을 적당한 위치에 압축을 풀고, `Monster.exe /install` 를 실행하면 설치가 완료됩니다. 이후 시스템 부팅 시 자동으로 `Monster` 가 실행됩니다. 
